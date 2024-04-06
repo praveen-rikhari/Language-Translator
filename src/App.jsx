@@ -20,20 +20,20 @@ function App() {
   }, [])
 
   const translate = () => {
-   
+
     const params = new URLSearchParams();
     params.append('q', input);
     params.append('source', from);
     params.append('target', to);
     params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
 
-    axios.post('https://libretranslate.de/translate',params, {
+    axios.post('https://libretranslate.de/translate', params, {
       headers: {
         'accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-    }).then(res=>{
-      console.log(res.data)
+    }).then(res => {
+      console.log(res.data.translatedText)
       setOutput(res.data.translatedText)
     })
   };
