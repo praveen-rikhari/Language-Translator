@@ -42,28 +42,28 @@ function App() {
     <>
       <div className="App">
         <h1>Language Translator</h1>
-        <div>
-          From <b>{from}</b> :
-          <select onChange={(e) => setFrom(e.target.value)}>
-            {options.map((opt) => (
-              <option value={opt.code} key={opt.code} >{opt.name}</option>
-            ))}
-          </select>
-          To <b>{to}</b> :
-          <select onChange={(e) => setTo(e.target.value)}>
-            {options.map((opt) => (
-              <option value={opt.code} key={opt.code} >{opt.name}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <textarea cols="50" rows="8" onInput={(e) => setInput(e.target.value)} ></textarea>
-        </div>
-        <div>
-          <textarea cols="50" rows="8" value={output} ></textarea>
-        </div>
-        <div>
-          <button onClick={e => translate()} >Translate</button>
+        <div className="container">
+          <div className="row">
+            From <b>{from}</b> :
+            <select className="from-dropdown" onChange={(e) => setFrom(e.target.value)}>
+              {options.map((opt) => (
+                <option value={opt.code} key={opt.code}>{opt.name}</option>
+              ))}
+            </select>
+            To <b>{to}</b> :
+            <select className="to-dropdown" onChange={(e) => setTo(e.target.value)}>
+              {options.map((opt) => (
+                <option value={opt.code} key={opt.code}>{opt.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="row">
+            <textarea className="input-text" cols="50" rows="8" onInput={(e) => setInput(e.target.value)} ></textarea>
+            <textarea className="output-text" cols="50" rows="8" value={output} ></textarea>
+          </div>
+          <div className="row">
+            <button className="translate-btn" onClick={e => translate()}>Translate</button>
+          </div>
         </div>
       </div>
     </>
