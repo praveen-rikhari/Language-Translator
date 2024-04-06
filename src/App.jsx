@@ -19,6 +19,25 @@ function App() {
       });
   }, [])
 
+  const translate = () => {
+   
+    const params = new URLSearchParams();
+    params.append('q', input);
+    params.append('source', from);
+    params.append('target', to);
+    params.append('api_key', 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+
+    axios.post('https://libretranslate.de/translate',params, {
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }).then(res=>{
+      console.log(res.data)
+      setOutput(res.data.translatedText)
+    })
+  };
+
   return (
     <>
       <div className="App">
@@ -38,13 +57,13 @@ function App() {
           </select>
         </div>
         <div>
-          <textarea cols="50" rows="8"></textarea>
+          <textarea cols="50" rows="8" onInput={(e) => setInput(e.target.value)} ></textarea>
         </div>
         <div>
-          <textarea cols="50" rows="8"></textarea>
+          <textarea cols="50" rows="8" value={output} ></textarea>
         </div>
         <div>
-          <button>Translate</button>
+          <button onClick={e => translate()} >Translate</button>
         </div>
       </div>
     </>
